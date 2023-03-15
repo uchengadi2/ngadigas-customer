@@ -488,7 +488,7 @@ const Marketplace = (props) => {
               //alignItems="center"
               direction="row"
             >
-              {/* <ReactPlayer
+              <ReactPlayer
                 url={matchesSM ? heroVideoMobile : heroVideo}
                 playing
                 loop
@@ -497,7 +497,7 @@ const Marketplace = (props) => {
                 // height="100%"
                 width="99rem"
                 height="49rem"
-              /> */}
+              />
               {/* <div className={classes.overlay}> */}
               {/* <img
                   src={logo}
@@ -535,8 +535,7 @@ const Marketplace = (props) => {
                     //     Marketplace(B2B). <br />
                     //   </span>{" "}
                     //   <span style={{ marginLeft: matchesSM ? 20 : 20 }}>
-                    //     Our business is to provide a trusted and unified
-                    //     online
+                    //     Our business is to provide a trusted and unified online
                     //   </span>
                     //   <br />
                     //   <span style={{ marginLeft: matchesSM ? 20 : 50 }}>
@@ -551,42 +550,42 @@ const Marketplace = (props) => {
                     //     retailers for trade and services.
                     //   </span>
                     // </Typography>
-                    <Typography></Typography>
-                    // <Typography
-                    //   variant={matchesSM ? "subtitle2" : "h2"}
-                    //   align="left"
-                    //   style={{ marginTop: "16rem", fontSize: "1.2rem" }}
-                    //   justifyContent="center"
-                    //   alignItems="center"
-                    // >
-                    //   <span
-                    //     style={{
-                    //       marginLeft: matchesSM ? 20 : 5,
-                    //     }}
-                    //   >
-                    //     {" "}
-                    //     E-Shield Africa is an online/e-commerce <br />
-                    //   </span>{" "}
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 20 }}>
-                    //     Marketplace(B2B). Our business is to provide
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 50 }}>
-                    //     a trusted and unified online portal for multiple
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 130 }}>
-                    //     manufacturers, distributors and vendors.
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 230 }}>
-                    //     We connect them to retailers for
-                    //   </span>
-                    //   <br />
-                    //   <span style={{ marginLeft: matchesSM ? 20 : 230 }}>
-                    //     trade and services.
-                    //   </span>
-                    // </Typography>
+                    // <Typography></Typography>
+                    <Typography
+                      variant={matchesSM ? "subtitle2" : "h2"}
+                      align="left"
+                      style={{ marginTop: "16rem", fontSize: "1.2rem" }}
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <span
+                        style={{
+                          marginLeft: matchesSM ? 20 : 5,
+                        }}
+                      >
+                        {" "}
+                        E-Shield Africa is an online/e-commerce <br />
+                      </span>{" "}
+                      <span style={{ marginLeft: matchesSM ? 20 : 20 }}>
+                        Marketplace(B2B). Our business is to provide
+                      </span>
+                      <br />
+                      <span style={{ marginLeft: matchesSM ? 20 : 50 }}>
+                        a trusted and unified online portal for multiple
+                      </span>
+                      <br />
+                      <span style={{ marginLeft: matchesSM ? 20 : 130 }}>
+                        manufacturers, distributors and vendors.
+                      </span>
+                      <br />
+                      <span style={{ marginLeft: matchesSM ? 20 : 230 }}>
+                        We connect them to retailers for
+                      </span>
+                      <br />
+                      <span style={{ marginLeft: matchesSM ? 20 : 230 }}>
+                        trade and services.
+                      </span>
+                    </Typography>
                   )}
 
                   {matchesMD ? (
@@ -597,17 +596,17 @@ const Marketplace = (props) => {
                       className={classes.buttonContainer}
                     >
                       {/* <Grid item>
-                          <Button
-                            component={Link}
-                            // to="/mobileapps"
-                            to={`/categories`}
-                            varaint="outlined"
-                            className={classes.estimateButton}
-                            onClick={() => <Categories token={props.token} />}
-                          >
-                            See Our Product Categories
-                          </Button>
-                        </Grid> */}
+                        <Button
+                          component={Link}
+                          // to="/mobileapps"
+                          to={`/categories`}
+                          varaint="outlined"
+                          className={classes.estimateButton}
+                          onClick={() => <Categories token={props.token} />}
+                        >
+                          See Our Product Categories
+                        </Button>
+                      </Grid> */}
                     </Grid>
                   ) : (
                     <Typography>Just to be suire</Typography>

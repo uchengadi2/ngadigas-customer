@@ -265,7 +265,7 @@ function UpperFooter(props) {
             direction="row"
             alignItems="center"
             style={{ height: "80em" }}
-            className={classes.infoBackground}
+            // className={classes.infoBackground}
           >
             <Grid
               container

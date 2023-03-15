@@ -36,6 +36,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const renderRequestedQuantityField = ({
+  input,
+  label,
+  meta: { touched, error, invalid },
+  type,
+  id,
+  ...custom
+}) => {
+  return (
+    <TextField
+      //error={touched && invalid}
+      helperText="How many units do you need?"
+      variant="outlined"
+      label={label}
+      id={input.name}
+      //value={input.value}
+      fullWidth
+      //required
+      type={type}
+      //defaultValue={quantity}
+      {...custom}
+      onChange={input.onChange}
+      InputProps={{
+        inputProps: {
+          min: 1,
+          style: {
+            height: 1,
+          },
+        },
+      }}
+    />
+  );
+};
+
 function SendProductToCartForm(props) {
   const {
     minimumQuantity,
@@ -46,6 +80,7 @@ function SendProductToCartForm(props) {
     locationCountry,
   } = props;
   const [quantity, setQuantity] = useState();
+  const [newQuantity, setNewQuantity] = useState();
   const [price, setPrice] = useState();
   const [productQuantityInCart, setProductQuantityInCart] = useState();
   const [productLocation, setProductLocation] = useState();
@@ -59,9 +94,9 @@ function SendProductToCartForm(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setQuantity(props.minimumQuantity);
+    setQuantity(newQuantity);
     setPrice(props.price);
-  }, [props]);
+  }, [props, newQuantity]);
 
   useEffect(() => {
     if (!quantity) {
@@ -133,11 +168,12 @@ function SendProductToCartForm(props) {
     fetchData().catch(console.error);
   }, []);
 
-  const onChange = (e) => {
-    const quantity = parseFloat(e.target.value);
-    setQuantity(quantity);
-    const newTotal = quantity * parseFloat(price);
+  const onQuantityChange = (e) => {
+    const newQuantity = parseFloat(e.target.value);
+
+    const newTotal = newQuantity * parseFloat(price);
     setTotal(newTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"));
+    setNewQuantity(newQuantity);
   };
 
   const renderTotalField = ({
@@ -211,40 +247,6 @@ function SendProductToCartForm(props) {
     );
   };
 
-  const renderRequestedQuantityField = ({
-    input,
-    label,
-    meta: { touched, error, invalid },
-    type,
-    id,
-    ...custom
-  }) => {
-    return (
-      <TextField
-        //error={touched && invalid}
-        helperText="How many units do you need?"
-        variant="outlined"
-        label={label}
-        id={input.name}
-        //value={input.value}
-        fullWidth
-        //required
-        type={type}
-        defaultValue={quantity}
-        {...custom}
-        onChange={input.onChange}
-        InputProps={{
-          inputProps: {
-            min: 1,
-            style: {
-              height: 1,
-            },
-          },
-        }}
-      />
-    );
-  };
-
   const buttonContent = () => {
     return <React.Fragment> Add to Cart</React.Fragment>;
   };
@@ -258,7 +260,21 @@ function SendProductToCartForm(props) {
       return;
     }
 
-    if (+quantity < +minimumQuantity) {
+    if (!formValues["quantity"]) {
+      props.handleFailedSnackbar("The order quantity cannot be empty");
+      setLoading(false);
+      return;
+    }
+
+    if (formValues["quantity"] <= 0) {
+      props.handleFailedSnackbar(
+        "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
+      );
+      setLoading(false);
+      return;
+    }
+
+    if (+formValues["quantity"] < +minimumQuantity) {
       props.handleFailedSnackbar(
         "The order quantity cannot be lower than the Minimum Quantity Required(MQR)"
       );
@@ -396,7 +412,8 @@ function SendProductToCartForm(props) {
           id="quantity"
           name="quantity"
           type="number"
-          onChange={onChange}
+          defaultValue={quantity}
+          onChange={onQuantityChange}
           component={renderRequestedQuantityField}
           style={{ width: 300, marginTop: 10 }}
         />
